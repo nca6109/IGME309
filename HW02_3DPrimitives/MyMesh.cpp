@@ -184,7 +184,7 @@ void MyMesh::GenerateTube(float a_fOuterRadius, float a_fInnerRadius, float a_fH
 		theta += changeInAngle;
 		verticesTO.push_back(point);
 	}
-	//Create inner circle vertices
+	//Create inner circle vertices (top and bottom)
 	for (uint i = 0; i < a_nSubdivisions; i++)
 	{
 		vector3 point = vector3(cos(theta) * a_fInnerRadius, sin(theta) * a_fInnerRadius, 0.0f);
@@ -245,7 +245,32 @@ void MyMesh::GenerateTorus(float a_fOuterRadius, float a_fInnerRadius, int a_nSu
 	Init();
 
 	// Replace this with your code
-	GenerateCube(a_fOuterRadius * 2.0f, a_v3Color);
+	std::vector<vector3 > verticesO;
+	std::vector<vector3 > verticesI;
+	std::vector<vector3> verticesR;
+	GLfloat theta = 0;
+	GLfloat changeInAngle = static_cast<GLfloat>(2.0 * PI / static_cast<GLfloat>(a_nSubdivisionsA));
+	//Create outer circle vertices
+	for (uint i = 0; i < a_nSubdivisionsA; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fOuterRadius, sin(theta) * a_fOuterRadius, 0.0f);
+		theta += changeInAngle;
+		verticesO.push_back(point);
+	}
+	//Create inner circle vertices
+	for (uint i = 0; i < a_nSubdivisionsA; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fInnerRadius, sin(theta) * a_fInnerRadius, 0.0f);
+		theta += changeInAngle;
+		verticesI.push_back(point);
+	}
+	//Create a circle of vertices that is in between the outer and inner ring
+	for (uint i = 0; i < a_nSubdivisionsA; i++)
+	{
+		verticesR.push_back(verticesO[i] - verticesI[i]);
+	}
+	//Loop through all verticesR points and generate a circle (subdivisionsB) of vertices around each R vert
+
 	// -------------------------------
 
 	// Adding information about color
