@@ -20,6 +20,7 @@ using namespace BTX;
 
 class Application
 {
+	MyMesh* m_pMyShape = nullptr;
 	MyMesh* m_pMesh1 = nullptr;
 	MyMesh* m_pMesh2 = nullptr;
 private:
