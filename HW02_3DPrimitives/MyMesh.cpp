@@ -60,9 +60,27 @@ void MyMesh::GenerateCone(float a_fRadius, float a_fHeight, int a_nSubdivisions,
 	Release();
 	Init();
 
-	// Replace this with your code
-	GenerateCube(a_fRadius * 2.0f, a_v3Color);
-	// -------------------------------
+	//Create circle base vertices
+	std::vector<vector3 > vertices;
+	GLfloat theta = 0;
+	GLfloat changeInAngle = static_cast<GLfloat>(2.0 * PI / static_cast<GLfloat>(a_nSubdivisions));
+	vector3 conePoint = vector3(0.0f, 0.0f, a_fHeight);
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fRadius, sin(theta) * a_fRadius, 0.0f);
+		theta += changeInAngle;
+		vertices.push_back(point);
+	}
+	//Create triangles for base
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddTri(ZERO_V3, vertices[(i + 1) % a_nSubdivisions], vertices[i]);
+	}
+	//Create triangles to point that is height above center
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddTri(conePoint, vertices[i], vertices[(i + 1) % a_nSubdivisions]);
+	}
 
 	// Adding information about color
 	CompleteMesh(a_v3Color);
@@ -85,7 +103,42 @@ void MyMesh::GenerateCylinder(float a_fRadius, float a_fHeight, int a_nSubdivisi
 	Init();
 
 	// Replace this with your code
-	GenerateCube(a_fRadius * 2.0f, a_v3Color);
+	//Create circle base vertices
+	std::vector<vector3 > verticesB;
+	std::vector<vector3> verticesT;
+	GLfloat theta = 0;
+	GLfloat changeInAngle = static_cast<GLfloat>(2.0 * PI / static_cast<GLfloat>(a_nSubdivisions));
+	vector3 topCenter = vector3(0.0f, 0.0f, a_fHeight);
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fRadius, sin(theta) * a_fRadius, 0.0f);
+		theta += changeInAngle;
+		verticesB.push_back(point);
+	}
+	//Create an identical circle translated by height along z
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fRadius, sin(theta) * a_fRadius, a_fHeight);
+		theta += changeInAngle;
+		verticesT.push_back(point);
+	}
+	//Create triangles for base
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddTri(ZERO_V3, verticesB[(i + 1) % a_nSubdivisions], verticesB[i]);
+	}
+	//Create triangles for top circle
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddTri(topCenter, verticesT[i], verticesT[(i + 1) % a_nSubdivisions]);
+	}
+	//Draw the triangles connecting the two circles
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddTri(verticesB[i], verticesB[(i + 1) % a_nSubdivisions], verticesT[i]);
+		AddTri(verticesB[(i+1)%a_nSubdivisions], verticesT[(i + 1) % a_nSubdivisions], verticesT[i]);
+	}
+
 	// -------------------------------
 
 	// Adding information about color
