@@ -102,7 +102,6 @@ void MyMesh::GenerateCylinder(float a_fRadius, float a_fHeight, int a_nSubdivisi
 	Release();
 	Init();
 
-	// Replace this with your code
 	//Create circle base vertices
 	std::vector<vector3 > verticesB;
 	std::vector<vector3> verticesT;
@@ -139,8 +138,6 @@ void MyMesh::GenerateCylinder(float a_fRadius, float a_fHeight, int a_nSubdivisi
 		AddTri(verticesB[(i+1)%a_nSubdivisions], verticesT[(i + 1) % a_nSubdivisions], verticesT[i]);
 	}
 
-	// -------------------------------
-
 	// Adding information about color
 	CompleteMesh(a_v3Color);
 	CompileOpenGL3X();
@@ -167,9 +164,57 @@ void MyMesh::GenerateTube(float a_fOuterRadius, float a_fInnerRadius, float a_fH
 	Release();
 	Init();
 
-	// Replace this with your code
-	GenerateCube(a_fOuterRadius * 2.0f, a_v3Color);
-	// -------------------------------
+	std::vector<vector3 > verticesBO;
+	std::vector<vector3> verticesTO;
+	std::vector<vector3 > verticesBI;
+	std::vector<vector3> verticesTI;
+	GLfloat theta = 0;
+	GLfloat changeInAngle = static_cast<GLfloat>(2.0 * PI / static_cast<GLfloat>(a_nSubdivisions));
+	vector3 topCenter = vector3(0.0f, 0.0f, a_fHeight);
+	//Create outer circle vertices (top and bottom)
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fOuterRadius, sin(theta) * a_fOuterRadius, 0.0f);
+		theta += changeInAngle;
+		verticesBO.push_back(point);
+	}
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fOuterRadius, sin(theta) * a_fOuterRadius, a_fHeight);
+		theta += changeInAngle;
+		verticesTO.push_back(point);
+	}
+	//Create inner circle vertices
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fInnerRadius, sin(theta) * a_fInnerRadius, 0.0f);
+		theta += changeInAngle;
+		verticesBI.push_back(point);
+	}
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fInnerRadius, sin(theta) * a_fInnerRadius, a_fHeight);
+		theta += changeInAngle;
+		verticesTI.push_back(point);
+	}
+	//Connect outer circles with tris
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddTri(verticesBO[i], verticesBO[(i + 1) % a_nSubdivisions], verticesTO[i]);
+		AddTri(verticesBO[(i + 1) % a_nSubdivisions], verticesTO[(i + 1) % a_nSubdivisions], verticesTO[i]);
+	}
+	//Connect Inner circles with tris
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddTri(verticesBI[i], verticesTI[i], verticesBI[(i + 1) % a_nSubdivisions]);
+		AddTri(verticesBI[(i + 1) % a_nSubdivisions], verticesTI[i], verticesTI[(i + 1) % a_nSubdivisions]);
+	}
+	//Coonect the top and bottom inner and outer circles with quads
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddQuad(verticesTO[i], verticesTO[(i + 1) % a_nSubdivisions], verticesTI[i], verticesTI[(i + 1) % a_nSubdivisions]);
+		AddQuad(verticesBO[(i + 1) % a_nSubdivisions], verticesBO[i], verticesBI[(i + 1) % a_nSubdivisions], verticesBI[i]);
+	}
 
 	// Adding information about color
 	CompleteMesh(a_v3Color);
