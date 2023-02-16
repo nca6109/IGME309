@@ -265,7 +265,7 @@ void MyMesh::GenerateTorus(float a_fOuterRadius, float a_fInnerRadius, int a_nSu
 
 		for (uint i = 0; i < a_nSubdivisionsB; i++)
 		{
-			torVertex.push_back(m4Transform * vector4(vertices[i], 0.0f);
+			torVertex.push_back(m4Transform * vector4(vertices[i], 0.0f));
 		}
 	}
 
