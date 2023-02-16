@@ -60,9 +60,27 @@ void MyMesh::GenerateCone(float a_fRadius, float a_fHeight, int a_nSubdivisions,
 	Release();
 	Init();
 
-	// Replace this with your code
-	GenerateCube(a_fRadius * 2.0f, a_v3Color);
-	// -------------------------------
+	//Create circle base vertices
+	std::vector<vector3 > vertices;
+	GLfloat theta = 0;
+	GLfloat changeInAngle = static_cast<GLfloat>(2.0 * PI / static_cast<GLfloat>(a_nSubdivisions));
+	vector3 conePoint = vector3(0.0f, 0.0f, a_fHeight);
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fRadius, sin(theta) * a_fRadius, 0.0f);
+		theta += changeInAngle;
+		vertices.push_back(point);
+	}
+	//Create triangles for base
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddTri(ZERO_V3, vertices[(i + 1) % a_nSubdivisions], vertices[i]);
+	}
+	//Create triangles to point that is height above center
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddTri(conePoint, vertices[i], vertices[(i + 1) % a_nSubdivisions]);
+	}
 
 	// Adding information about color
 	CompleteMesh(a_v3Color);
@@ -84,9 +102,41 @@ void MyMesh::GenerateCylinder(float a_fRadius, float a_fHeight, int a_nSubdivisi
 	Release();
 	Init();
 
-	// Replace this with your code
-	GenerateCube(a_fRadius * 2.0f, a_v3Color);
-	// -------------------------------
+	//Create circle base vertices
+	std::vector<vector3 > verticesB;
+	std::vector<vector3> verticesT;
+	GLfloat theta = 0;
+	GLfloat changeInAngle = static_cast<GLfloat>(2.0 * PI / static_cast<GLfloat>(a_nSubdivisions));
+	vector3 topCenter = vector3(0.0f, 0.0f, a_fHeight);
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fRadius, sin(theta) * a_fRadius, 0.0f);
+		theta += changeInAngle;
+		verticesB.push_back(point);
+	}
+	//Create an identical circle translated by height along z
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fRadius, sin(theta) * a_fRadius, a_fHeight);
+		theta += changeInAngle;
+		verticesT.push_back(point);
+	}
+	//Create triangles for base
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddTri(ZERO_V3, verticesB[(i + 1) % a_nSubdivisions], verticesB[i]);
+	}
+	//Create triangles for top circle
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddTri(topCenter, verticesT[i], verticesT[(i + 1) % a_nSubdivisions]);
+	}
+	//Draw the triangles connecting the two circles
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddTri(verticesB[i], verticesB[(i + 1) % a_nSubdivisions], verticesT[i]);
+		AddTri(verticesB[(i+1)%a_nSubdivisions], verticesT[(i + 1) % a_nSubdivisions], verticesT[i]);
+	}
 
 	// Adding information about color
 	CompleteMesh(a_v3Color);
@@ -114,9 +164,57 @@ void MyMesh::GenerateTube(float a_fOuterRadius, float a_fInnerRadius, float a_fH
 	Release();
 	Init();
 
-	// Replace this with your code
-	GenerateCube(a_fOuterRadius * 2.0f, a_v3Color);
-	// -------------------------------
+	std::vector<vector3 > verticesBO;
+	std::vector<vector3> verticesTO;
+	std::vector<vector3 > verticesBI;
+	std::vector<vector3> verticesTI;
+	GLfloat theta = 0;
+	GLfloat changeInAngle = static_cast<GLfloat>(2.0 * PI / static_cast<GLfloat>(a_nSubdivisions));
+	vector3 topCenter = vector3(0.0f, 0.0f, a_fHeight);
+	//Create outer circle vertices (top and bottom)
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fOuterRadius, sin(theta) * a_fOuterRadius, 0.0f);
+		theta += changeInAngle;
+		verticesBO.push_back(point);
+	}
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fOuterRadius, sin(theta) * a_fOuterRadius, a_fHeight);
+		theta += changeInAngle;
+		verticesTO.push_back(point);
+	}
+	//Create inner circle vertices (top and bottom)
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fInnerRadius, sin(theta) * a_fInnerRadius, 0.0f);
+		theta += changeInAngle;
+		verticesBI.push_back(point);
+	}
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fInnerRadius, sin(theta) * a_fInnerRadius, a_fHeight);
+		theta += changeInAngle;
+		verticesTI.push_back(point);
+	}
+	//Connect outer circles with tris
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddTri(verticesBO[i], verticesBO[(i + 1) % a_nSubdivisions], verticesTO[i]);
+		AddTri(verticesBO[(i + 1) % a_nSubdivisions], verticesTO[(i + 1) % a_nSubdivisions], verticesTO[i]);
+	}
+	//Connect Inner circles with tris
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddTri(verticesBI[i], verticesTI[i], verticesBI[(i + 1) % a_nSubdivisions]);
+		AddTri(verticesBI[(i + 1) % a_nSubdivisions], verticesTI[i], verticesTI[(i + 1) % a_nSubdivisions]);
+	}
+	//Coonect the top and bottom inner and outer circles with quads
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddQuad(verticesTO[i], verticesTO[(i + 1) % a_nSubdivisions], verticesTI[i], verticesTI[(i + 1) % a_nSubdivisions]);
+		AddQuad(verticesBO[(i + 1) % a_nSubdivisions], verticesBO[i], verticesBI[(i + 1) % a_nSubdivisions], verticesBI[i]);
+	}
 
 	// Adding information about color
 	CompleteMesh(a_v3Color);
@@ -147,7 +245,32 @@ void MyMesh::GenerateTorus(float a_fOuterRadius, float a_fInnerRadius, int a_nSu
 	Init();
 
 	// Replace this with your code
-	GenerateCube(a_fOuterRadius * 2.0f, a_v3Color);
+	std::vector<vector3 > verticesO;
+	std::vector<vector3 > verticesI;
+	std::vector<vector3> verticesR;
+	GLfloat theta = 0;
+	GLfloat changeInAngle = static_cast<GLfloat>(2.0 * PI / static_cast<GLfloat>(a_nSubdivisionsA));
+	//Create outer circle vertices
+	for (uint i = 0; i < a_nSubdivisionsA; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fOuterRadius, sin(theta) * a_fOuterRadius, 0.0f);
+		theta += changeInAngle;
+		verticesO.push_back(point);
+	}
+	//Create inner circle vertices
+	for (uint i = 0; i < a_nSubdivisionsA; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fInnerRadius, sin(theta) * a_fInnerRadius, 0.0f);
+		theta += changeInAngle;
+		verticesI.push_back(point);
+	}
+	//Create a circle of vertices that is in between the outer and inner ring
+	for (uint i = 0; i < a_nSubdivisionsA; i++)
+	{
+		verticesR.push_back(verticesO[i] - verticesI[i]);
+	}
+	//Loop through all verticesR points and generate a circle (subdivisionsB) of vertices around each R vert
+
 	// -------------------------------
 
 	// Adding information about color
