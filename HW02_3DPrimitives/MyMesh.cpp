@@ -247,27 +247,51 @@ void MyMesh::GenerateTorus(float a_fOuterRadius, float a_fInnerRadius, int a_nSu
 	// Replace this with your code
 	std::vector<vector3 > vertices;
 	std::vector<vector3> torVertex;
+	std::vector<vector3> test;
 	GLfloat theta = 0;
 	GLfloat changeInAngle = static_cast<GLfloat>(2.0 * PI / static_cast<GLfloat>(a_nSubdivisionsA));
-	//Create outer circle vertices
-	for (uint i = 0; i < a_nSubdivisionsA; i++)
+	//Circle base to rotate around center
+	for (uint i = 0; i < a_nSubdivisionsB; i++)
 	{
-		vector3 point = vector3(sin(theta) * a_fOuterRadius, cos(theta) * a_fOuterRadius, 0.0f);
+		vector3 point = vector3(cos(theta) * a_fInnerRadius, sin(theta) * 0.25f, 0.0f);
 		theta += changeInAngle;
 		vertices.push_back(point);
 	}
-
-	for (uint tSub = 0; tSub < a_nSubdivisionsA; tSub++)
+	/*for (int i = 0; i < a_nSubdivisionsB; i++)
 	{
-		matrix4 m4Transform;
-		m4Transform = glm::rotate(IDENTITY_M4, changeInAngle * tSub, AXIS_Y);
-		m4Transform = glm::translate(IDENTITY_M4, vector3(a_fOuterRadius - a_fInnerRadius, 0.0f, 0.0f));
+		AddTri(ZERO_V3, vertices[i], vertices[(i + 1) % a_nSubdivisionsB]);
+	}*/
+
+	//Create all torus vertices
+	for (uint tSub = 0; tSub < a_nSubdivisionsA/2; tSub++)
+	{
+		matrix4 m4Translate = glm::translate(IDENTITY_M4, vector3(a_fOuterRadius, 0.0f, 0.0f));
+		matrix4 m4Rotate = glm::rotate(IDENTITY_M4, changeInAngle * tSub, AXIS_Y);
+		vector3 center = m4Translate * m4Rotate * vector4(ZERO_V3, 0.0f);
 
 		for (uint i = 0; i < a_nSubdivisionsB; i++)
 		{
-			torVertex.push_back(m4Transform * vector4(vertices[i], 0.0f));
+			vector3 point = m4Translate * m4Rotate * vector4(vertices[i], 0.0f);
+			torVertex.push_back(point);
+			test.push_back(point);
+
 		}
+		for (int i = 0; i < a_nSubdivisionsB; i++)
+		{
+			AddTri(center, test[i], test[(i + 1) % a_nSubdivisionsB]);
+		}
+		test.clear();
 	}
+
+	//Draw torus quads
+	/*for (uint i = 0; i < a_nSubdivisionsA; i++)
+	{
+		for (uint k = 0; k < a_nSubdivisionsB; k++)
+		{
+			AddQuad(torVertex[i + ((k + 1) % a_nSubdivisionsB)], torVertex[((i + 1) % a_nSubdivisionsA) + ((k + 1) % a_nSubdivisionsB)],
+				torVertex[i + k], torVertex[((i + 1) % a_nSubdivisionsA) + k]);
+		}
+	}*/
 
 	// -------------------------------
 
