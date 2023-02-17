@@ -263,35 +263,39 @@ void MyMesh::GenerateTorus(float a_fOuterRadius, float a_fInnerRadius, int a_nSu
 	}*/
 
 	//Create all torus vertices
-	for (uint tSub = 0; tSub < a_nSubdivisionsA/2; tSub++)
+	for (uint tSub = 0; tSub < a_nSubdivisionsA; tSub++)
 	{
-		matrix4 m4Translate = glm::translate(IDENTITY_M4, vector3(a_fOuterRadius, 0.0f, 0.0f));
-		matrix4 m4Rotate = glm::rotate(IDENTITY_M4, changeInAngle * tSub, AXIS_Y);
-		vector3 center = m4Translate * m4Rotate * vector4(ZERO_V3, 0.0f);
+		matrix4 m4Transform;
+		float fTheta = (360.0 / static_cast<float>(a_nSubdivisionsA)) * static_cast<float>(tSub);
+		m4Transform = glm::rotate(IDENTITY_M4, glm::radians(fTheta), AXIS_Y);
+		m4Transform = glm::translate(m4Transform, vector3(a_fOuterRadius, 0.0f, 0.0f));
+		vector3 center = m4Transform * vector4(ZERO_V3, 1.0f);
 
 		for (uint i = 0; i < a_nSubdivisionsB; i++)
 		{
-			vector3 point = m4Translate * m4Rotate * vector4(vertices[i], 0.0f);
+			vector3 point = m4Transform * vector4(vertices[i], 1.0f);
 			torVertex.push_back(point);
 			test.push_back(point);
 
 		}
-		for (int i = 0; i < a_nSubdivisionsB; i++)
+		/*for (int i = 0; i < a_nSubdivisionsB; i++)
 		{
-			AddTri(center, test[i], test[(i + 1) % a_nSubdivisionsB]);
-		}
-		test.clear();
+			AddTri(center, torVertex[(tSub*a_nSubdivisionsB)+i], torVertex[(tSub * a_nSubdivisionsB) +((i + 1) % a_nSubdivisionsB)]);
+		}*/
+		//test.clear();
 	}
 
 	//Draw torus quads
-	/*for (uint i = 0; i < a_nSubdivisionsA; i++)
+	for (uint i = 0; i < a_nSubdivisionsA; i++)
 	{
 		for (uint k = 0; k < a_nSubdivisionsB; k++)
 		{
-			AddQuad(torVertex[i + ((k + 1) % a_nSubdivisionsB)], torVertex[((i + 1) % a_nSubdivisionsA) + ((k + 1) % a_nSubdivisionsB)],
-				torVertex[i + k], torVertex[((i + 1) % a_nSubdivisionsA) + k]);
+			AddQuad(torVertex[(i * a_nSubdivisionsB) + k],
+				torVertex[(((i + 1) * a_nSubdivisionsB) % torVertex.size()) + k],
+				torVertex[(i * a_nSubdivisionsB) + ((k + 1) % a_nSubdivisionsB)],
+				torVertex[(((i + 1) * a_nSubdivisionsB) % torVertex.size()) + ((k + 1) % a_nSubdivisionsB)]);
 		}
-	}*/
+	}
 
 	// -------------------------------
 
