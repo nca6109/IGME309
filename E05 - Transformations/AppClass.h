@@ -20,10 +20,12 @@ using namespace BTX;
 
 class Application
 {
-	uint m_uMeshCount = 10;
+	uint m_uMeshCount = 46;
+	float m_fDisplacement = 0.0f;
 	MyMesh* m_pMesh;
+	std::vector<MyMesh*> m_pMeshes;
 private:
-	String m_sProgrammer = "Alberto Bobadilla - labigm@rit.edu";
+	String m_sProgrammer = "Nick Altier - nca6109@rit.edu";
 	static ImGuiObject gui; //GUI object
 
 	uint m_uRenderCallCount = 0; //count of render calls per frame
