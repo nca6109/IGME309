@@ -244,10 +244,8 @@ void MyMesh::GenerateTorus(float a_fOuterRadius, float a_fInnerRadius, int a_nSu
 	Release();
 	Init();
 
-	// Replace this with your code
 	std::vector<vector3 > vertices;
 	std::vector<vector3> torVertex;
-	std::vector<vector3> test;
 	GLfloat theta = 0;
 	GLfloat changeInAngle = static_cast<GLfloat>(2.0 * PI / static_cast<GLfloat>(a_nSubdivisionsA));
 	//Circle base to rotate around center
@@ -257,43 +255,34 @@ void MyMesh::GenerateTorus(float a_fOuterRadius, float a_fInnerRadius, int a_nSu
 		theta += changeInAngle;
 		vertices.push_back(point);
 	}
-	/*for (int i = 0; i < a_nSubdivisionsB; i++)
-	{
-		AddTri(ZERO_V3, vertices[i], vertices[(i + 1) % a_nSubdivisionsB]);
-	}*/
 
 	//Create all torus vertices
-	for (uint tSub = 0; tSub < a_nSubdivisionsA/2; tSub++)
+	for (uint tSub = 0; tSub < a_nSubdivisionsA; tSub++)
 	{
-		matrix4 m4Translate = glm::translate(IDENTITY_M4, vector3(a_fOuterRadius, 0.0f, 0.0f));
-		matrix4 m4Rotate = glm::rotate(IDENTITY_M4, changeInAngle * tSub, AXIS_Y);
-		vector3 center = m4Translate * m4Rotate * vector4(ZERO_V3, 0.0f);
+		matrix4 m4Transform;
+		float fTheta = (360.0 / static_cast<float>(a_nSubdivisionsA)) * static_cast<float>(tSub);
+		m4Transform = glm::rotate(IDENTITY_M4, glm::radians(fTheta), AXIS_Y);
+		m4Transform = glm::translate(m4Transform, vector3(a_fOuterRadius, 0.0f, 0.0f));
 
 		for (uint i = 0; i < a_nSubdivisionsB; i++)
 		{
-			vector3 point = m4Translate * m4Rotate * vector4(vertices[i], 0.0f);
+			vector3 point = m4Transform * vector4(vertices[i], 1.0f);
 			torVertex.push_back(point);
-			test.push_back(point);
 
 		}
-		for (int i = 0; i < a_nSubdivisionsB; i++)
-		{
-			AddTri(center, test[i], test[(i + 1) % a_nSubdivisionsB]);
-		}
-		test.clear();
 	}
 
 	//Draw torus quads
-	/*for (uint i = 0; i < a_nSubdivisionsA; i++)
+	for (uint i = 0; i < a_nSubdivisionsA; i++)
 	{
 		for (uint k = 0; k < a_nSubdivisionsB; k++)
 		{
-			AddQuad(torVertex[i + ((k + 1) % a_nSubdivisionsB)], torVertex[((i + 1) % a_nSubdivisionsA) + ((k + 1) % a_nSubdivisionsB)],
-				torVertex[i + k], torVertex[((i + 1) % a_nSubdivisionsA) + k]);
+			AddQuad(torVertex[(i * a_nSubdivisionsB) + k],
+				torVertex[(((i + 1) * a_nSubdivisionsB) % torVertex.size()) + k],
+				torVertex[(i * a_nSubdivisionsB) + ((k + 1) % a_nSubdivisionsB)],
+				torVertex[(((i + 1) * a_nSubdivisionsB) % torVertex.size()) + ((k + 1) % a_nSubdivisionsB)]);
 		}
-	}*/
-
-	// -------------------------------
+	}
 
 	// Adding information about color
 	CompleteMesh(a_v3Color);
@@ -316,9 +305,56 @@ void MyMesh::GenerateSphere(float a_fRadius, int a_nSubdivisions, vector3 a_v3Co
 	Release();
 	Init();
 
-	// Replace this with your code
-	GenerateCube(a_fRadius * 2.0f, a_v3Color);
-	// -------------------------------
+	std::vector<vector3 > vertices;
+	std::vector<vector3> sphereVerts;
+	GLfloat theta = 0;
+	GLfloat a_fCircleSubdivision=8;
+	GLfloat changeInAngle = static_cast<GLfloat>(PI / a_fCircleSubdivision);
+	//Semicircle base to draw verts with
+	for (uint i = 0; i < a_fCircleSubdivision; i++)
+	{
+		vector3 point = vector3(cos(theta) * a_fRadius, sin(theta) * a_fRadius, 0.0f);
+		theta += changeInAngle;
+		vertices.push_back(point);
+	}
+
+	//Create all sphere vertices
+	for (uint tSub = 0; tSub < a_nSubdivisions; tSub++)
+	{
+		matrix4 m4Transform;
+		float fTheta = (360.0 / static_cast<float>(a_nSubdivisions)) * static_cast<float>(tSub);
+		m4Transform = glm::rotate(IDENTITY_M4, glm::radians(fTheta), AXIS_X);
+		//m4Transform = glm::translate(m4Transform, vector3(a_fRadius, 0.0f, 0.0f));
+
+		for (uint i = 0; i < a_fCircleSubdivision; i++)
+		{
+			vector3 point = m4Transform * vector4(vertices[i], 1.0f);
+			sphereVerts.push_back(point);
+
+		}
+	}
+
+	//Draw sphere quads
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		for (uint k = 0; k < a_fCircleSubdivision-1; k++)
+		{
+			AddQuad(sphereVerts[(i * a_fCircleSubdivision) + ((k + 1) % (int)a_fCircleSubdivision)],
+				sphereVerts[(((i + 1) * (int)a_fCircleSubdivision) % sphereVerts.size()) + ((k + 1) % (int)a_fCircleSubdivision)],
+				sphereVerts[(i * a_fCircleSubdivision) + k],
+				sphereVerts[(((i + 1) * (int)a_fCircleSubdivision) % sphereVerts.size()) + k]);
+		}
+	}
+	//Cover sphere cap
+	vector3 sphereCap = glm::translate(IDENTITY_M4, vector3(-2*a_fRadius, 0.0f, 0.0f)) * vector4(a_fRadius, 0, 0, 1);
+	for (uint i = 0; i < a_nSubdivisions; i++)
+	{
+		AddQuad(
+			sphereVerts[((i * (int)a_fCircleSubdivision) % sphereVerts.size()) + a_fCircleSubdivision - 1],
+			sphereCap,
+			sphereVerts[(((i + 1) * (int)a_fCircleSubdivision) % sphereVerts.size()) + a_fCircleSubdivision - 1],
+			sphereCap);
+	}
 
 	// Adding information about color
 	CompleteMesh(a_v3Color);
