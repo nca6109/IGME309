@@ -7,6 +7,8 @@ void Application::InitVariables(void)
 	vector3 v3Target = ZERO_V3;
 	vector3 v3Upward = AXIS_Y;
 	m_pCameraMngr->SetPositionTargetAndUpward(v3Position, v3Target, v3Upward);
+	m_sModel = "WallEye.obj";
+	m_pModelMngr->LoadModel(m_sModel);
 }
 void Application::Update(void)
 {
@@ -21,6 +23,17 @@ void Application::Update(void)
 
 	//Update Entity Manager
 	m_pEntityMngr->Update();
+
+	m_pModelMngr->AddModelToRenderList(m_sModel, ToMatrix4(m_qArcBall));
+
+	static float fValue = 0.0f;
+	m_pCameraMngr->SetPosition(vector3(0.0f, 0.0f, 10.0f));
+	//m_pCameraMngr->SetTarget(vector3(0.0f, 3.0f, 0.0f));
+	//m_pCameraMngr->SetUpward(vector3(0.0f, 0.0f, 0.0f));
+
+	//m_pCameraMngr->SetFOV(fValue+45.0f);
+	m_pCameraMngr->SetNearFarPlanes(0.01f, fValue);
+	fValue += m_pSystem->GetDeltaTime(0);
 
 	//Add objects to render list
 	m_pEntityMngr->AddEntityToRenderList(-1, true);

@@ -35,7 +35,7 @@ void Application::Update(void)
 	View and Projection matrices for individual models, only all of the models
 	contained in it at once when the render call feeds both of them
 	*/
-	m_pModelMngr->AddModelToRenderList("Minecraft\\Steve.obj", ToMatrix4(m_qArcBall));
+	//m_pModelMngr->AddModelToRenderList("Minecraft\\Steve.obj", ToMatrix4(m_qArcBall));
 
 	//Update Entity Manager
 	m_pEntityMngr->Update();
@@ -49,7 +49,7 @@ void Application::Display(void)
 	ClearScreen();
 
 	// draw a skybox
-	m_pModelMngr->AddSkyboxToRenderList();
+	//m_pModelMngr->AddSkyboxToRenderList();
 
 	//Camera position
 	static float fPos = 0.0f;

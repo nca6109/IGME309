@@ -18,6 +18,7 @@ using namespace BTX;
 
 class Application
 {
+	String m_sModel;
 private:
 	String m_sProgrammer = "Alberto Bobadilla - labigm@rit.edu";
 	static ImGuiObject gui; //GUI object
