@@ -63,6 +63,64 @@ void MyRigidBody::Release(void)
 MyRigidBody::MyRigidBody(std::vector<vector3> a_pointList)
 {
 	Init();
+	uint uCount = a_pointList.size();
+
+	//Wrong route: finding avg of pts
+	//if (a_pointList.size() < 1)
+	//	return;
+	////Find the center
+	//m_v3Center = a_pointList[0];
+	//for (uint i = 1; i < uCount; i++)
+	//{
+	//	m_v3Center += a_pointList[i];
+	//}
+	//m_v3Center = m_v3Center / static_cast<float>(uCount);
+	////Find furthest point from center
+	//for (uint i = 0; i < uCount; i++)
+	//{
+	//	float fDistance = glm::distance(m_v3Center, a_pointList[i]);
+	//	if (m_fRadius < fDistance)
+	//		m_fRadius = fDistance;
+	//	//fDistance = std::max(m_fRadius, fDistance); //Another way of doing the if statement above
+
+	//}
+
+	//Right way
+	if (a_pointList.size() < 1)
+		return;
+	//Find the center
+	m_v3Center = a_pointList[0];
+	m_v3MaxL = m_v3MinL = a_pointList[0];
+	for (uint i = 1; i < uCount; i++)
+	{
+		//Maxes
+		if (m_v3MaxL.x < a_pointList[i].x)
+			m_v3MaxL.x = a_pointList[i].x;
+		if (m_v3MaxL.y < a_pointList[i].y)
+			m_v3MaxL.y = a_pointList[i].y;
+		if (m_v3MaxL.z < a_pointList[i].z)
+			m_v3MaxL.z = a_pointList[i].z;
+		//Mins
+		if (m_v3MinL.x > a_pointList[i].x)
+			m_v3MinL.x = a_pointList[i].x;
+		if (m_v3MinL.y > a_pointList[i].y)
+			m_v3MinL.y = a_pointList[i].y;
+		if (m_v3MinL.z > a_pointList[i].z)
+			m_v3MinL.z = a_pointList[i].z;
+	}
+
+	m_v3Center = (m_v3MaxL + m_v3MinL) / 2.0f;
+	//Find furthest point from center
+	//Closer but more taxing bounding sphere
+	for (uint i = 0; i < uCount; i++)
+	{
+		float fDistance = glm::distance(m_v3Center, a_pointList[i]);
+		if (m_fRadius < fDistance)
+			m_fRadius = fDistance;
+		//fDistance = std::max(m_fRadius, fDistance); //Another way of doing the if statement above
+	}
+	//Least expensive option
+	/*m_fRadius = glm::distance(m_v3Center, m_v3MaxL);*/
 }
 MyRigidBody::MyRigidBody(MyRigidBody const& other)
 {
@@ -102,6 +160,10 @@ void MyRigidBody::AddToRenderList(void)
 {
 	if (!m_bVisible)
 		return;
+
+	matrix4 m4Transform = glm::translate(IDENTITY_M4, m_v3Center); //move sphere to center
+	m4Transform = m4Transform * glm::scale(IDENTITY_M4, vector3(m_fRadius, m_fRadius, m_fRadius)); //scale to size of the radius
+	m_pMeshMngr->AddWireSphereToRenderList(m4Transform, m_v3Color);
 }
 bool MyRigidBody::IsColliding(MyRigidBody* const other)
 {
