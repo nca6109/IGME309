@@ -42,6 +42,10 @@ void MyCamera::CalculateView(void)
 	//		 it will receive information from the main code on how much these orientations
 	//		 have change so you only need to focus on the directional and positional 
 	//		 vectors. There is no need to calculate any right click process or connections.
+	
+	quaternion q1 = glm::angleAxis(glm::radians(m_v3PitchYawRoll.x), m_v3Rightward);
+	m_v3Target = m_v3Target * glm::toMat4(q1);
+	m_v3Upward += m_v3PitchYawRoll.x;
 	m_m4View = glm::lookAt(m_v3Position, m_v3Target, m_v3Upward);
 }
 //You can assume that the code below does not need changes unless you expand the functionality
