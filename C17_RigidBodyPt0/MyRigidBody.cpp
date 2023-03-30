@@ -13,7 +13,34 @@ vector3 MyRigidBody::GetMinGlobal(void) { return m_v3MinG; }
 vector3 MyRigidBody::GetMaxGlobal(void) { return m_v3MaxG; }
 vector3 MyRigidBody::GetHalfWidth(void) { return m_v3HalfWidth; }
 matrix4 MyRigidBody::GetModelMatrix(void) { return m_m4ToWorld; }
-void MyRigidBody::SetModelMatrix(matrix4 a_m4ModelMatrix) { m_m4ToWorld = a_m4ModelMatrix; }
+
+void MyRigidBody::SetModelMatrix(matrix4 a_m4ModelMatrix) 
+{ 
+	if (m_m4ToWorld == a_m4ModelMatrix)
+		return;
+
+	m_m4ToWorld = a_m4ModelMatrix; 
+	std::vector<vector3> cornerList;
+
+	cornerList.push_back(vector3(m_v3MinL.x, m_v3MinL.y, m_v3MinL.z));
+	cornerList.push_back(vector3(m_v3MinL.x, m_v3MaxL.y, m_v3MinL.z));
+	cornerList.push_back(vector3(m_v3MaxL.x, m_v3MinL.y, m_v3MinL.z));
+	cornerList.push_back(vector3(m_v3MaxL.x, m_v3MaxL.y, m_v3MinL.z));
+
+	cornerList.push_back(vector3(m_v3MinL.x, m_v3MinL.y, m_v3MaxL.z));
+	cornerList.push_back(vector3(m_v3MinL.x, m_v3MaxL.y, m_v3MaxL.z));
+	cornerList.push_back(vector3(m_v3MaxL.x, m_v3MinL.y, m_v3MaxL.z));
+	cornerList.push_back(vector3(m_v3MaxL.x, m_v3MaxL.y, m_v3MaxL.z));
+
+	for (uint i = 0; i < 8; i++)
+	{
+		cornerList[i] = GlobalizeVector(cornerList[i]);
+	}
+
+	MyRigidBody oTemp(cornerList);
+	m_v3MinG = oTemp.m_v3MinL;
+	m_v3MaxG = oTemp.m_v3MaxL;
+}
 //Allocation
 void MyRigidBody::Init(void)
 {
@@ -176,6 +203,10 @@ void MyRigidBody::AddToRenderList(void)
 	m4Transform = m4Transform*glm::translate(IDENTITY_M4, m_v3Center);
 	m4Transform = m4Transform * glm::scale(2.0f*m_v3HalfWidth);
 	m_pMeshMngr->AddWireCubeToRenderList(m4Transform, m_v3Color);
+
+	vector3 v3ARBBSize = m_v3MaxG - m_v3MinG;
+	//m4Transform = m_m4ToWorld;
+	m_pMeshMngr->AddWireCubeToRenderList(glm::translate(IDENTITY_M4, GlobalizeVector(m_v3Center)) * glm::scale(v3ARBBSize), C_YELLOW);
 }
 bool MyRigidBody::IsColliding(MyRigidBody* const other)
 {
