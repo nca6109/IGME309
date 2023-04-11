@@ -7,8 +7,6 @@ uint MyRigidBody::SAT(MyRigidBody* const a_pOther)
 	//Real Time Collision detection algorithm for OBB here but feel free to
 	//implement your own solution.
 
-	const float EPSILON = 0.0001f;
-
 	float rThis, rOther;
 	glm::mat3 R, AbsR;
 
@@ -30,7 +28,7 @@ uint MyRigidBody::SAT(MyRigidBody* const a_pOther)
 
 	for (uint i = 0; i < 3; i++)
 		for (uint j = 0; j < 3; j++)
-			AbsR[i][j] = glm::abs(R[i][j]) + EPSILON;
+			AbsR[i][j] = glm::abs(R[i][j]) + glm::epsilon<float>();
 
 	//Variables to hold halfwidths
 	vector3 ae = this->m_v3HalfWidth;
