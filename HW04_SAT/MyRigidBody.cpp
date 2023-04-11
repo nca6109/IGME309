@@ -32,6 +32,82 @@ uint MyRigidBody::SAT(MyRigidBody* const a_pOther)
 		for (uint j = 0; j < 3; j++)
 			AbsR[i][j] = glm::abs(R[i][j]) + EPSILON;
 
+	//Variables to hold halfwidths
+	vector3 ae = this->m_v3HalfWidth;
+	vector3 be = a_pOther->m_v3HalfWidth;
+	
+	// Test thisX, thisY, and thisZ (return AX if true)
+	for (uint i = 0; i < 3; i++)
+	{
+		rThis = ae[i];
+		rOther = be.x * AbsR[i][0] + be.y + AbsR[i][1] * be.z + AbsR[i][2];
+		if (glm::abs(translation[i]) > rThis + rOther)
+			return BTXs::eSATResults::SAT_AX;
+	}
+
+	// Test otherX, otherY, and otherZ (return BX if true)
+	for (uint i = 0; i < 3; i++)
+	{
+		rThis = ae.x * AbsR[0][i] + ae.y + AbsR[1][i] * ae.z + AbsR[2][i];
+		rOther = be[i];
+		if (glm::abs(translation[i]) > rThis + rOther)
+			return BTXs::eSATResults::SAT_BX;
+	}
+
+	//Test thisX cross otherX
+	rThis = ae.y * AbsR[2][0] + ae.z * AbsR[1][0];
+	rOther = be.y * AbsR[0][2] + be.z * AbsR[0][2];
+	if (glm::abs(translation[2] * R[1][0] - translation[1] * R[2][0]) > rThis + rOther)
+		return BTXs::eSATResults::SAT_AXxBX;
+
+	//Test thisX cross otherY
+	rThis = ae.y * AbsR[2][1] + ae.z * AbsR[1][1];
+	rOther = be.x * AbsR[0][2] + be.z * AbsR[0][0];
+	if (glm::abs(translation[2] * R[1][1] - translation[1] * R[2][1]) > rThis + rOther)
+		return BTXs::eSATResults::SAT_AXxBY;
+
+	//Test thisX cross otherZ
+	rThis = ae.y * AbsR[2][2] + ae.z * AbsR[1][2];
+	rOther = be.x * AbsR[0][1] + be.y * AbsR[0][0];
+	if (glm::abs(translation[2] * R[1][2] - translation[1] * R[2][2]) > rThis + rOther)
+		return BTXs::eSATResults::SAT_AXxBZ;
+
+	//Test thisY cross otherX
+	rThis = ae.x * AbsR[2][0] + ae.z * AbsR[0][0];
+	rOther = be.y * AbsR[1][2] + be.z * AbsR[1][1];
+	if (glm::abs(translation[0] * R[2][0] - translation[2] * R[0][0]) > rThis + rOther)
+		return BTXs::eSATResults::SAT_AYxBX;
+
+	//Test thisY cross otherY
+	rThis = ae.x * AbsR[2][1] + ae.z * AbsR[0][1];
+	rOther = be.x * AbsR[1][2] + be.z * AbsR[1][0];
+	if (glm::abs(translation[0] * R[2][1] - translation[2] * R[0][1]) > rThis + rOther)
+		return BTXs::eSATResults::SAT_AYxBY;
+
+	//Test thisY cross otherZ
+	rThis = ae.x * AbsR[2][2] + ae.z * AbsR[0][2];
+	rOther = be.x * AbsR[1][1] + be.y * AbsR[1][0];
+	if (glm::abs(translation[0] * R[2][2] - translation[2] * R[0][2]) > rThis + rOther)
+		return BTXs::eSATResults::SAT_AYxBZ;
+
+	//Test thisZ cross otherX
+	rThis = ae.x * AbsR[1][0] + ae.y * AbsR[0][0];
+	rOther = be.y * AbsR[2][2] + be.z * AbsR[2][1];
+	if (glm::abs(translation[1] * R[0][0] - translation[0] * R[1][0]) > rThis + rOther)
+		return BTXs::eSATResults::SAT_AZxBX;
+
+	//Test thisZ cross otherY
+	rThis = ae.x * AbsR[1][1] + ae.y * AbsR[0][1];
+	rOther = be.x * AbsR[2][2] + be.z * AbsR[2][0];
+	if (glm::abs(translation[1] * R[0][1] - translation[0] * R[1][1]) > rThis + rOther)
+		return BTXs::eSATResults::SAT_AZxBY;
+
+	//Test thisZ cross otherZ
+	rThis = ae.x * AbsR[1][2] + ae.y * AbsR[0][2];
+	rOther = be.x * AbsR[2][1] + be.y * AbsR[2][0];
+	if (glm::abs(translation[1] * R[0][2] - translation[0] * R[1][2]) > rThis + rOther)
+		return BTXs::eSATResults::SAT_AZxBZ;
+
 	return BTXs::eSATResults::SAT_NONE;
 }
 bool MyRigidBody::IsColliding(MyRigidBody* const a_pOther)
