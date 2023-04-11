@@ -6,6 +6,32 @@ uint MyRigidBody::SAT(MyRigidBody* const a_pOther)
 	//TODO: Calculate the SAT algorithm I STRONGLY suggest you use the
 	//Real Time Collision detection algorithm for OBB here but feel free to
 	//implement your own solution.
+
+	const float EPSILON = 0.001f;
+
+	float rThis, rOther;
+	glm::mat3 R, AbsR;
+
+	//Put other into the coordinate frame of this
+	for (uint i = 0; i < 3; i++)
+	{
+		for (uint j = 0; j < 3; j++)
+		{
+			R[i][j] = glm::dot(m_m4ToWorld[i], a_pOther->m_m4ToWorld[j]);
+		}
+	}
+
+	//Compute translation vector
+	vector3 translation = a_pOther->m_v3Center - this->m_v3Center;
+	//Bring translation into coordinate frame of this
+	translation = vector3(glm::dot(vector4(translation, 1.0f), this->m_m4ToWorld[0]), 
+						  glm::dot(vector4(translation, 1.0f), this->m_m4ToWorld[1]), 
+						  glm::dot(vector4(translation, 1.0f), this->m_m4ToWorld[2]));
+
+	for (uint i = 0; i < 3; i++)
+		for (uint j = 0; j < 3; j++)
+			AbsR[i][j] = glm::abs(R[i][j]) + EPSILON;
+
 	return BTXs::eSATResults::SAT_NONE;
 }
 bool MyRigidBody::IsColliding(MyRigidBody* const a_pOther)
