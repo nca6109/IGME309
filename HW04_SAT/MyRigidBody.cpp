@@ -7,7 +7,7 @@ uint MyRigidBody::SAT(MyRigidBody* const a_pOther)
 	//Real Time Collision detection algorithm for OBB here but feel free to
 	//implement your own solution.
 
-	const float EPSILON = 0.001f;
+	const float EPSILON = 0.0001f;
 
 	float rThis, rOther;
 	glm::mat3 R, AbsR;
@@ -17,16 +17,16 @@ uint MyRigidBody::SAT(MyRigidBody* const a_pOther)
 	{
 		for (uint j = 0; j < 3; j++)
 		{
-			R[i][j] = glm::dot(m_m4ToWorld[i], a_pOther->m_m4ToWorld[j]);
+			R[i][j] = glm::dot(this->m_m4ToWorld[i], a_pOther->m_m4ToWorld[j]);
 		}
 	}
 
 	//Compute translation vector
-	vector3 translation = a_pOther->m_v3Center - this->m_v3Center;
+	vector3 translation = a_pOther->GetCenterGlobal() - this->GetCenterGlobal();
 	//Bring translation into coordinate frame of this
-	translation = vector3(glm::dot(vector4(translation, 1.0f), this->m_m4ToWorld[0]), 
-						  glm::dot(vector4(translation, 1.0f), this->m_m4ToWorld[1]), 
-						  glm::dot(vector4(translation, 1.0f), this->m_m4ToWorld[2]));
+	translation = vector3(glm::dot(vector4(translation, 0.0f), this->m_m4ToWorld[0]), 
+						  glm::dot(vector4(translation, 0.0f), this->m_m4ToWorld[1]), 
+						  glm::dot(vector4(translation, 0.0f), this->m_m4ToWorld[2]));
 
 	for (uint i = 0; i < 3; i++)
 		for (uint j = 0; j < 3; j++)
@@ -122,6 +122,8 @@ bool MyRigidBody::IsColliding(MyRigidBody* const a_pOther)
 	if (bColliding) //they are colliding with bounding sphere
 	{
 		uint nResult = SAT(a_pOther);
+
+		bColliding = nResult == BTXs::eSATResults::SAT_NONE;
 
 		if (bColliding) //The SAT shown they are colliding
 		{
