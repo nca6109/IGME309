@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+ <html xmlns:msxsl="urn:schemas-microsoft-com:xslt"><head><meta content="en-us" http-equiv="Content-Language" /><meta content="text/html; charset=utf-16" http-equiv="Content-Type" /><title _locID="ConversionReport0">
+          Migration Report
+        </title><style> 
+                    /* Body style, for the entire document */
+                    body
+                    {
+                        background: #F3F3F4;
+                        color: #1E1E1F;
+                        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    /* Header1 style, used for the main title */
+                    h1
+                    {
+                        padding: 10px 0px 10px 10px;
+                        font-size: 21pt;
+                        background-color: #E2E2E2;
+                        border-bottom: 1px #C1C1C2 solid; 
+                        color: #201F20;
+                        margin: 0;
+                        font-weight: normal;
+                    }
+
+                    /* Header2 style, used for "Overview" and other sections */
+                    h2
+                    {
+                        font-size: 18pt;
+                        font-weight: normal;
+                        padding: 15px 0 5px 0;
+                        margin: 0;
+                    }
+
+                    /* Header3 style, used for sub-sections, such as project name */
+                    h3
+                    {
+                        font-weight: normal;
+                        font-size: 15pt;
+                        margin: 0;
+                        padding: 15px 0 5px 0;
+                        background-color: transparent;
+                    }
+
+                    /* Color all hyperlinks one color */
+                    a
+                    {
+                        color: #1382CE;
+                    }
+
+                    /* Table styles */ 
+                    table
+                    {
+                        border-spacing: 0 0;
+                        border-collapse: collapse;
+                        font-size: 10pt;
+                    }
+
+                    table th
+                    {
+                        background: #E7E7E8;
+                        text-align: left;
+                        text-decoration: none;
+                        font-weight: normal;
+                        padding: 3px 6px 3px 6px;
+                    }
+
+                    table td
+                    {
+                        vertical-align: top;
+                        padding: 3px 6px 5px 5px;
+                        margin: 0px;
+                        border: 1px solid #E7E7E8;
+                        background: #F7F7F8;
+                    }
+
+                    /* Local link is a style for hyperlinks that link to file:/// content, there are lots so color them as 'normal' text until the user mouse overs */
+                    .localLink
+                    {
+                        color: #1E1E1F;
+                        background: #EEEEED;
+                        text-decoration: none;
+                    }
+
+                    .localLink:hover
+                    {
+                        color: #1382CE;
+                        background: #FFFF99;
+                        text-decoration: none;
+                    }
+
+                    /* Center text, used in the over views cells that contain message level counts */ 
+                    .textCentered
+                    {
+                        text-align: center;
+                    }
+
+                    /* The message cells in message tables should take up all avaliable space */
+                    .messageCell
+                    {
+                        width: 100%;
+                    }
+
+                    /* Padding around the content after the h1 */ 
+                    #content 
+                    {
+	                    padding: 0px 12px 12px 12px; 
+                    }
+
+                    /* The overview table expands to width, with a max width of 97% */ 
+                    #overview table
+                    {
+                        width: auto;
+                        max-width: 75%; 
+                    }
+
+                    /* The messages tables are always 97% width */
+                    #messages table
+                    {
+                        width: 97%;
+                    }
+
+                    /* All Icons */
+                    .IconSuccessEncoded, .IconInfoEncoded, .IconWarningEncoded, .IconErrorEncoded
+                    {
+                        min-width:18px;
+                        min-height:18px; 
+                        background-repeat:no-repeat;
+                        background-position:center;
+                    }
+
+                    /* Success icon encoded */
+                    .IconSuccessEncoded
+                    {
+                        /* Note: Do not delete the comment below. It is used to verify the correctness of the encoded image resource below before the product is released */
+                        /* [---XsltValidateInternal-Base64EncodedImage:IconSuccess#Begin#background-image: url(data:image/png;base64,#Separator#);#End#] */
+                        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABcElEQVR4Xq2TsUsCURzHv15g8ZJcBWlyiYYgCIWcb9DFRRwMW5TA2c0/QEFwFkxxUQdxVlBwCYWOi6IhWgQhBLHJUCkhLr/BW8S7gvrAg+N+v8/v+x68Z8MGy+XSCyABQAXgBgHGALoASkIIDWSLeLBetdHryMjd5IxQPWT4rn1c/P7+xxp72Cs9m5SZ0Bq2vPnbPFafK2zDvmNHypdC0BPkLlQhxJsCAhQoZwdZU5mwxh720qGo8MzTxTTKZDPCx2HoVzp6lz0Q9tKhyx0kGs8Ny+TkWRKk8lCROwEduhyg9l/6lunOPSfmH3NUH6uQ0KHLAe7JYvJjevm+DAMGJHToKtigE+vwvIidxLamb8IBY9e+C5LiXREkfho3TSd06HJA13/oh6T51MTsfQbHrsMynQ5dDihFjiK8JJAU9AKIWTp76dCVN7HWHrajmUEGvyF9nkbAE6gLIS7kTUyuf2gscLoJrElZo/Mvj+nPz/kLTmfnEwP3tB0AAAAASUVORK5CYII=);
+                    }
+
+                    /* Information icon encoded */
+                    .IconInfoEncoded
+                    {
+                        /* Note: Do not delete the comment below. It is used to verify the correctness of the encoded image resource below before the product is released */
+                        /* [---XsltValidateInternal-Base64EncodedImage:IconInformation#Begin#background-image: url(data:image/png;base64,#Separator#);#End#] */
+                        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHElEQVR4Xs2TsUoDQRRF7wwoziokjZUKadInhdhukR9YP8DMX1hYW+QvdsXa/QHBbcXC7W0CamWTQnclFutceIQJwwaWNLlwm5k5d94M76mmaeCrrmsLYOocY12FcxZFUeozCqKqqgYA8uevv1H6VuPxcwlfk5N92KHBxfFeCSAxxswlYAW/Xr989x/mv9gkhtyMDhcAxgzRsp7flj8B/HF1RsMXq+NZMkopaHe7lbKxQUEIGbKsYNoGn969060hZBkQex/W8oRQwsQaW2o3Ago2SVcJUzAgY3N0lTCZZm+zPS8HB51gMmS1DEYyOz9acKO1D8JWTlafKIMxdhvlfdyT94Vv5h7P8Ky7nQzACmhvKq3zk3PjW9asz9D/1oigecsioooAAAAASUVORK5CYII=);
+                    }
+
+                    /* Warning icon encoded */
+                    .IconWarningEncoded
+                    {
+                        /* Note: Do not delete the comment below. It is used to verify the correctness of the encoded image resource below before the product is released */
+                        /* [---XsltValidateInternal-Base64EncodedImage:IconWarning#Begin#background-image: url(data:image/png;base64,#Separator#);#End#] */
+                        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAx0lEQVR4XpWSMQ7CMAxFf4xAyBMLCxMrO8dhaBcuwdCJS3RJBw7SA/QGTCxdWJgiQYWKXJWKIXHIlyw5lqr34tQgEOdcBsCOx5yZK3hCCKdYXneQkh4pEfqzLfu+wVDSyyzFoJjfz9NB+pAF+eizx2Vruts0k15mPgvS6GYvpVtQhB61IB/dk6AF6fS4Ben0uIX5odtFe8Q/eW1KvFeH4e8khT6+gm5B+t3juyDt7n0jpe+CANTd+oTUjN/U3yVaABnSUjFz/gFq44JaVSCXeQAAAABJRU5ErkJggg==);
+                    }
+
+                    /* Error icon encoded */
+                    .IconErrorEncoded
+                    {
+                        /* Note: Do not delete the comment below. It is used to verify the correctness of the encoded image resource below before the product is released */
+                        /* [---XsltValidateInternal-Base64EncodedImage:IconError#Begin#background-image: url(data:image/png;base64,#Separator#);#End#] */
+                        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABQElEQVR4XqWTvUoEQRCE6wYPZUA80AfwAQz23uCMjA7MDRQEIzPBVEyNTQUFIw00vcQTTMzuAh/AxEQQT8HF/3G/oGGnEUGuoNnd6qoZuqltyKEsyzVJq5I6rnUp6SjGeGhESikzzlc1eL7opfuVbrqbU1Zw9NCgtQMaZpY0eNnaaL2fHusvTK5vKu7sjSS1Y4y3QUA6K3e3Mau5UFDyMP7tYF9o8cAHZv68vipoIJg971PZIZ5HiwdvYGGvFVFHmGmZ2MxwmQYPXubPl9Up0tfoMQGetXd6mRbvhBw+boZ6WF7Mbv1+GsHRk0fQmPAH1GfmZirbCfDJ61tw3Px8/8pZsPAG4jlVhcPgZ7adwNWBB68lkRQWFiTgFlbnLY3DGGM7izIJIyT/jjIvEJw6fdJTc6krDzh6aMwMP9bvDH4ADSsa9uSWVJkAAAAASUVORK5CYII=);
+                    }
+                 </style><script type="text/javascript" language="javascript"> 
+          
+            // Startup 
+            // Hook up the the loaded event for the document/window, to linkify the document content
+            var startupFunction = function() { linkifyElement("messages"); };
+            
+            if(window.attachEvent)
+            {
+              window.attachEvent('onload', startupFunction);
+            }
+            else if (window.addEventListener) 
+            {
+              window.addEventListener('load', startupFunction, false);
+            }
+            else 
+            {
+              document.addEventListener('load', startupFunction, false);
+            } 
+            
+            // Toggles the visibility of table rows with the specified name 
+            function toggleTableRowsByName(name)
+            {
+               var allRows = document.getElementsByTagName('tr');
+               for (i=0; i < allRows.length; i++)
+               {
+                  var currentName = allRows[i].getAttribute('name');
+                  if(!!currentName && currentName.indexOf(name) == 0)
+                  {
+                      var isVisible = allRows[i].style.display == ''; 
+                      isVisible ? allRows[i].style.display = 'none' : allRows[i].style.display = '';
+                  }
+               }
+            }
+            
+            function scrollToFirstVisibleRow(name) 
+            {
+               var allRows = document.getElementsByTagName('tr');
+               for (i=0; i < allRows.length; i++)
+               {
+                  var currentName = allRows[i].getAttribute('name');
+                  var isVisible = allRows[i].style.display == ''; 
+                  if(!!currentName && currentName.indexOf(name) == 0 && isVisible)
+                  {
+                     allRows[i].scrollIntoView(true); 
+                     return true; 
+                  }
+               }
+               
+               return false;
+            }
+            
+            // Linkifies the specified text content, replaces candidate links with html links 
+            function linkify(text)
+            {
+                 if(!text || 0 === text.length)
+                 {
+                     return text; 
+                 }
+
+                 // Find http, https and ftp links and replace them with hyper links 
+                 var urlLink = /(http|https|ftp)\:\/\/[a-zA-Z0-9\-\.]+(:[a-zA-Z0-9]*)?\/?([a-zA-Z0-9\-\._\?\,\/\\\+&%\$#\=~;\{\}])*/gi;
+                 
+                 return text.replace(urlLink, '<a href="$&">$&</a>') ;
+            }
+            
+            // Linkifies the specified element by ID
+            function linkifyElement(id)
+            {
+                var element = document.getElementById(id);
+                if(!!element)
+                {
+                  element.innerHTML = linkify(element.innerHTML); 
+                }
+            }
+            
+            function ToggleMessageVisibility(projectName)
+            {
+              if(!projectName || 0 === projectName.length)
+              {
+                return; 
+              }
+              
+              toggleTableRowsByName("MessageRowClass" + projectName);
+              toggleTableRowsByName('MessageRowHeaderShow' + projectName);
+              toggleTableRowsByName('MessageRowHeaderHide' + projectName); 
+            }
+            
+            function ScrollToFirstVisibleMessage(projectName)
+            {
+              if(!projectName || 0 === projectName.length)
+              {
+                return; 
+              }
+              
+              // First try the 'Show messages' row
+              if(!scrollToFirstVisibleRow('MessageRowHeaderShow' + projectName))
+              {
+                // Failed to find a visible row for 'Show messages', try an actual message row 
+                scrollToFirstVisibleRow('MessageRowClass' + projectName); 
+              }
+            }
+           </script></head><body><h1 _locID="ConversionReport">
+          Migration Report - </h1><div id="content"><h2 _locID="OverviewTitle">Overview</h2><div id="overview"><table><tr><th></th><th _locID="ProjectTableHeader">Project</th><th _locID="PathTableHeader">Path</th><th _locID="ErrorsTableHeader">Errors</th><th _locID="WarningsTableHeader">Warnings</th><th _locID="MessagesTableHeader">Messages</th></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#BTX">BTX</a></strong></td><td>BTX\BTX.vcxproj</td><td class="textCentered"><a href="#BTXError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C01_OpenGL">C01_OpenGL</a></strong></td><td>C01_OpenGL\C01_OpenGL.vcxproj</td><td class="textCentered"><a href="#C01_OpenGLError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C02_SFML">C02_SFML</a></strong></td><td>C02_SFML\C02_SFML.vcxproj</td><td class="textCentered"><a href="#C02_SFMLError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C03_ClassStructure">C03_ClassStructure</a></strong></td><td>C03_ClassStructure\C03_ClassStructure.vcxproj</td><td class="textCentered"><a href="#C03_ClassStructureError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C04_ShaderCompiler">C04_ShaderCompiler</a></strong></td><td>C04_ShaderCompiler\C04_ShaderCompiler.vcxproj</td><td class="textCentered"><a href="#C04_ShaderCompilerError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C05_Shaders">C05_Shaders</a></strong></td><td>C05_Shaders\C05_Shaders.vcxproj</td><td class="textCentered"><a href="#C05_ShadersError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C06_Translation">C06_Translation</a></strong></td><td>C06_Translation\C06_Translation.vcxproj</td><td class="textCentered"><a href="#C06_TranslationError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C07_Framework">C07_Framework</a></strong></td><td>C07_Framework\C07_Framework.vcxproj</td><td class="textCentered"><a href="#C07_FrameworkError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C08_Example">C08_Example</a></strong></td><td>C08_Example\C08_Example.vcxproj</td><td class="textCentered"><a href="#C08_ExampleError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C09_Base">C09_Base</a></strong></td><td>C09_Base\C09_Base.vcxproj</td><td class="textCentered"><a href="#C09_BaseError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C10_MeshClass">C10_MeshClass</a></strong></td><td>C10_MeshClass\C10_MeshClass.vcxproj</td><td class="textCentered"><a href="#C10_MeshClassError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C11_TranslationAndScale">C11_TranslationAndScale</a></strong></td><td>C11_TranslationAndScale\C11_TranslationAndScale.vcxproj</td><td class="textCentered"><a href="#C11_TranslationAndScaleError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C12_LERP">C12_LERP</a></strong></td><td>C12_LERP\C12_LERP.vcxproj</td><td class="textCentered"><a href="#C12_LERPError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C13_Rotations">C13_Rotations</a></strong></td><td>C13_Rotations\C13_Rotations.vcxproj</td><td class="textCentered"><a href="#C13_RotationsError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C14_Quaternions">C14_Quaternions</a></strong></td><td>C14_Quaternions\C14_Quaternions.vcxproj</td><td class="textCentered"><a href="#C14_QuaternionsError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C15_ProjectionsAndCamera">C15_ProjectionsAndCamera</a></strong></td><td>C15_ProjectionsAndCamera\C15_ProjectionsAndCamera.vcxproj</td><td class="textCentered"><a href="#C15_ProjectionsAndCameraError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C16_ManagersAndInstancing">C16_ManagersAndInstancing</a></strong></td><td>C16_ManagersAndInstancing\C16_ManagersAndInstancing.vcxproj</td><td class="textCentered"><a href="#C16_ManagersAndInstancingError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C17_RigidBodyPt0">C17_RigidBodyPt0</a></strong></td><td>C17_RigidBodyPt0\C17_RigidBodyPt0.vcxproj</td><td class="textCentered"><a href="#C17_RigidBodyPt0Error">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C17_RigidBodyPt1">C17_RigidBodyPt1</a></strong></td><td>C17_RigidBodyPt1\C17_RigidBodyPt1.vcxproj</td><td class="textCentered"><a href="#C17_RigidBodyPt1Error">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C17_RigidBodyPt2">C17_RigidBodyPt2</a></strong></td><td>C17_RigidBodyPt2\C17_RigidBodyPt2.vcxproj</td><td class="textCentered"><a href="#C17_RigidBodyPt2Error">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C17_RigidBodyPt3">C17_RigidBodyPt3</a></strong></td><td>C17_RigidBodyPt3\C17_RigidBodyPt3.vcxproj</td><td class="textCentered"><a href="#C17_RigidBodyPt3Error">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C18_SAT(outcome)">C18_SAT(outcome)</a></strong></td><td>C18_SAT(outcome)\C18_SAT(outcome).vcxproj</td><td class="textCentered"><a href="#C18_SAT(outcome)Error">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C19_Entity">C19_Entity</a></strong></td><td>C19_Entity\C19_Entity.vcxproj</td><td class="textCentered"><a href="#C19_EntityError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C20_EntityManager">C20_EntityManager</a></strong></td><td>C20_EntityManager\C20_EntityManager.vcxproj</td><td class="textCentered"><a href="#C20_EntityManagerError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C21_SpatialOptimization">C21_SpatialOptimization</a></strong></td><td>C21_SpatialOptimization\C21_SpatialOptimizationPt1.vcxproj</td><td class="textCentered"><a href="#C21_SpatialOptimizationError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#C22_Physics">C22_Physics</a></strong></td><td>C22_Physics\C22_Physics.vcxproj</td><td class="textCentered"><a href="#C22_PhysicsError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#E01s_Configuration">E01s_Configuration</a></strong></td><td>E01s_Configuration\E01s_Configuration.vcxproj</td><td class="textCentered"><a href="#E01s_ConfigurationError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#E03s - OpenGL Shaders">E03s - OpenGL Shaders</a></strong></td><td>E03s - OpenGL Shaders\E03s - OpenGL Shaders.vcxproj</td><td class="textCentered"><a href="#E03s - OpenGL ShadersError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#E04 - Circle Creation">E04 - Circle Creation</a></strong></td><td>E04 - Circle Creation\E04 - Circle Creation.vcxproj</td><td class="textCentered"><a href="#E04 - Circle CreationError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#E04s - Circle Creation">E04s - Circle Creation</a></strong></td><td>E04s - Circle Creation\E04s - Circle Creation.vcxproj</td><td class="textCentered"><a href="#E04s - Circle CreationError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#E05 - Transformations">E05 - Transformations</a></strong></td><td>E05 - Transformations\E05 - Transformations.vcxproj</td><td class="textCentered"><a href="#E05 - TransformationsError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#E05s - Transformations">E05s - Transformations</a></strong></td><td>E05s - Transformations\E05s - Transformations.vcxproj</td><td class="textCentered"><a href="#E05s - TransformationsError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#E07 - Gimbal Removal">E07 - Gimbal Removal</a></strong></td><td>E07 - Gimbal Removal\E07 - Gimbal Removal.vcxproj</td><td class="textCentered"><a href="#E07 - Gimbal RemovalError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#E08 - Projections">E08 - Projections</a></strong></td><td>E08 - Projections\E08 - Projections.vcxproj</td><td class="textCentered"><a href="#E08 - ProjectionsError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#E08s - Projections">E08s - Projections</a></strong></td><td>E08s - Projections\E08s - Projections.vcxproj</td><td class="textCentered"><a href="#E08s - ProjectionsError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#HW01_STDQueue">HW01_STDQueue</a></strong></td><td>HW01_STDQueue\HW01_STDQueue.vcxproj</td><td class="textCentered"><a href="#HW01_STDQueueError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#HW02_3DPrimitives">HW02_3DPrimitives</a></strong></td><td>HW02_3DPrimitives\HW02_3DPrimitives.vcxproj</td><td class="textCentered"><a href="#HW02_3DPrimitivesError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#HW03_Camera">HW03_Camera</a></strong></td><td>HW03_Camera\HW03_Camera.vcxproj</td><td class="textCentered"><a href="#HW03_CameraError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#HW04_SAT">HW04_SAT</a></strong></td><td>HW04_SAT\HW04_SAT.vcxproj</td><td class="textCentered"><a href="#HW04_SATError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#HW05_Octree">HW05_Octree</a></strong></td><td>HW05_Octree\HW05_Octree.vcxproj</td><td class="textCentered"><a href="#HW05_OctreeError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Class">Class</a></strong></td><td>Class</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Exercises">Exercises</a></strong></td><td>Exercises</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Framework">Framework</a></strong></td><td>Framework</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Homework">Homework</a></strong></td><td>Homework</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Solution"><span _locID="OverviewSolutionSpan">Solution</span></a></strong></td><td>DSA2.sln</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#" onclick="ScrollToFirstVisibleMessage('Solution'); return false;">1</a></td></tr></table></div><h2 _locID="SolutionAndProjectsTitle">Solution and projects</h2><div id="messages"><a name="BTX" /><h3>BTX</h3><table><tr id="BTXHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassBTX"><td class="IconErrorEncoded"><a name="BTXError" /></td><td class="messageCell"><strong>BTX\BTX.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C01_OpenGL" /><h3>C01_OpenGL</h3><table><tr id="C01_OpenGLHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC01_OpenGL"><td class="IconErrorEncoded"><a name="C01_OpenGLError" /></td><td class="messageCell"><strong>C01_OpenGL\C01_OpenGL.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C02_SFML" /><h3>C02_SFML</h3><table><tr id="C02_SFMLHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC02_SFML"><td class="IconErrorEncoded"><a name="C02_SFMLError" /></td><td class="messageCell"><strong>C02_SFML\C02_SFML.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C03_ClassStructure" /><h3>C03_ClassStructure</h3><table><tr id="C03_ClassStructureHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC03_ClassStructure"><td class="IconErrorEncoded"><a name="C03_ClassStructureError" /></td><td class="messageCell"><strong>C03_ClassStructure\C03_ClassStructure.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C04_ShaderCompiler" /><h3>C04_ShaderCompiler</h3><table><tr id="C04_ShaderCompilerHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC04_ShaderCompiler"><td class="IconErrorEncoded"><a name="C04_ShaderCompilerError" /></td><td class="messageCell"><strong>C04_ShaderCompiler\C04_ShaderCompiler.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C05_Shaders" /><h3>C05_Shaders</h3><table><tr id="C05_ShadersHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC05_Shaders"><td class="IconErrorEncoded"><a name="C05_ShadersError" /></td><td class="messageCell"><strong>C05_Shaders\C05_Shaders.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C06_Translation" /><h3>C06_Translation</h3><table><tr id="C06_TranslationHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC06_Translation"><td class="IconErrorEncoded"><a name="C06_TranslationError" /></td><td class="messageCell"><strong>C06_Translation\C06_Translation.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C07_Framework" /><h3>C07_Framework</h3><table><tr id="C07_FrameworkHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC07_Framework"><td class="IconErrorEncoded"><a name="C07_FrameworkError" /></td><td class="messageCell"><strong>C07_Framework\C07_Framework.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C08_Example" /><h3>C08_Example</h3><table><tr id="C08_ExampleHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC08_Example"><td class="IconErrorEncoded"><a name="C08_ExampleError" /></td><td class="messageCell"><strong>C08_Example\C08_Example.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C09_Base" /><h3>C09_Base</h3><table><tr id="C09_BaseHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC09_Base"><td class="IconErrorEncoded"><a name="C09_BaseError" /></td><td class="messageCell"><strong>C09_Base\C09_Base.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C10_MeshClass" /><h3>C10_MeshClass</h3><table><tr id="C10_MeshClassHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC10_MeshClass"><td class="IconErrorEncoded"><a name="C10_MeshClassError" /></td><td class="messageCell"><strong>C10_MeshClass\C10_MeshClass.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C11_TranslationAndScale" /><h3>C11_TranslationAndScale</h3><table><tr id="C11_TranslationAndScaleHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC11_TranslationAndScale"><td class="IconErrorEncoded"><a name="C11_TranslationAndScaleError" /></td><td class="messageCell"><strong>C11_TranslationAndScale\C11_TranslationAndScale.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C12_LERP" /><h3>C12_LERP</h3><table><tr id="C12_LERPHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC12_LERP"><td class="IconErrorEncoded"><a name="C12_LERPError" /></td><td class="messageCell"><strong>C12_LERP\C12_LERP.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C13_Rotations" /><h3>C13_Rotations</h3><table><tr id="C13_RotationsHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC13_Rotations"><td class="IconErrorEncoded"><a name="C13_RotationsError" /></td><td class="messageCell"><strong>C13_Rotations\C13_Rotations.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C14_Quaternions" /><h3>C14_Quaternions</h3><table><tr id="C14_QuaternionsHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC14_Quaternions"><td class="IconErrorEncoded"><a name="C14_QuaternionsError" /></td><td class="messageCell"><strong>C14_Quaternions\C14_Quaternions.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C15_ProjectionsAndCamera" /><h3>C15_ProjectionsAndCamera</h3><table><tr id="C15_ProjectionsAndCameraHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC15_ProjectionsAndCamera"><td class="IconErrorEncoded"><a name="C15_ProjectionsAndCameraError" /></td><td class="messageCell"><strong>C15_ProjectionsAndCamera\C15_ProjectionsAndCamera.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C16_ManagersAndInstancing" /><h3>C16_ManagersAndInstancing</h3><table><tr id="C16_ManagersAndInstancingHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC16_ManagersAndInstancing"><td class="IconErrorEncoded"><a name="C16_ManagersAndInstancingError" /></td><td class="messageCell"><strong>C16_ManagersAndInstancing\C16_ManagersAndInstancing.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C17_RigidBodyPt0" /><h3>C17_RigidBodyPt0</h3><table><tr id="C17_RigidBodyPt0HeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC17_RigidBodyPt0"><td class="IconErrorEncoded"><a name="C17_RigidBodyPt0Error" /></td><td class="messageCell"><strong>C17_RigidBodyPt0\C17_RigidBodyPt0.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C17_RigidBodyPt1" /><h3>C17_RigidBodyPt1</h3><table><tr id="C17_RigidBodyPt1HeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC17_RigidBodyPt1"><td class="IconErrorEncoded"><a name="C17_RigidBodyPt1Error" /></td><td class="messageCell"><strong>C17_RigidBodyPt1\C17_RigidBodyPt1.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C17_RigidBodyPt2" /><h3>C17_RigidBodyPt2</h3><table><tr id="C17_RigidBodyPt2HeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC17_RigidBodyPt2"><td class="IconErrorEncoded"><a name="C17_RigidBodyPt2Error" /></td><td class="messageCell"><strong>C17_RigidBodyPt2\C17_RigidBodyPt2.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C17_RigidBodyPt3" /><h3>C17_RigidBodyPt3</h3><table><tr id="C17_RigidBodyPt3HeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC17_RigidBodyPt3"><td class="IconErrorEncoded"><a name="C17_RigidBodyPt3Error" /></td><td class="messageCell"><strong>C17_RigidBodyPt3\C17_RigidBodyPt3.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C18_SAT(outcome)" /><h3>C18_SAT(outcome)</h3><table><tr id="C18_SAT(outcome)HeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC18_SAT(outcome)"><td class="IconErrorEncoded"><a name="C18_SAT(outcome)Error" /></td><td class="messageCell"><strong>C18_SAT(outcome)\C18_SAT(outcome).vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C19_Entity" /><h3>C19_Entity</h3><table><tr id="C19_EntityHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC19_Entity"><td class="IconErrorEncoded"><a name="C19_EntityError" /></td><td class="messageCell"><strong>C19_Entity\C19_Entity.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C20_EntityManager" /><h3>C20_EntityManager</h3><table><tr id="C20_EntityManagerHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC20_EntityManager"><td class="IconErrorEncoded"><a name="C20_EntityManagerError" /></td><td class="messageCell"><strong>C20_EntityManager\C20_EntityManager.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C21_SpatialOptimization" /><h3>C21_SpatialOptimization</h3><table><tr id="C21_SpatialOptimizationHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC21_SpatialOptimization"><td class="IconErrorEncoded"><a name="C21_SpatialOptimizationError" /></td><td class="messageCell"><strong>C21_SpatialOptimization\C21_SpatialOptimizationPt1.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="C22_Physics" /><h3>C22_Physics</h3><table><tr id="C22_PhysicsHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassC22_Physics"><td class="IconErrorEncoded"><a name="C22_PhysicsError" /></td><td class="messageCell"><strong>C22_Physics\C22_Physics.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="E01s_Configuration" /><h3>E01s_Configuration</h3><table><tr id="E01s_ConfigurationHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassE01s_Configuration"><td class="IconErrorEncoded"><a name="E01s_ConfigurationError" /></td><td class="messageCell"><strong>E01s_Configuration\E01s_Configuration.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="E03s - OpenGL Shaders" /><h3>E03s - OpenGL Shaders</h3><table><tr id="E03s - OpenGL ShadersHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassE03s - OpenGL Shaders"><td class="IconErrorEncoded"><a name="E03s - OpenGL ShadersError" /></td><td class="messageCell"><strong>E03s - OpenGL Shaders\E03s - OpenGL Shaders.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="E04 - Circle Creation" /><h3>E04 - Circle Creation</h3><table><tr id="E04 - Circle CreationHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassE04 - Circle Creation"><td class="IconErrorEncoded"><a name="E04 - Circle CreationError" /></td><td class="messageCell"><strong>E04 - Circle Creation\E04 - Circle Creation.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="E04s - Circle Creation" /><h3>E04s - Circle Creation</h3><table><tr id="E04s - Circle CreationHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassE04s - Circle Creation"><td class="IconErrorEncoded"><a name="E04s - Circle CreationError" /></td><td class="messageCell"><strong>E04s - Circle Creation\E04s - Circle Creation.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="E05 - Transformations" /><h3>E05 - Transformations</h3><table><tr id="E05 - TransformationsHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassE05 - Transformations"><td class="IconErrorEncoded"><a name="E05 - TransformationsError" /></td><td class="messageCell"><strong>E05 - Transformations\E05 - Transformations.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="E05s - Transformations" /><h3>E05s - Transformations</h3><table><tr id="E05s - TransformationsHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassE05s - Transformations"><td class="IconErrorEncoded"><a name="E05s - TransformationsError" /></td><td class="messageCell"><strong>E05s - Transformations\E05s - Transformations.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="E07 - Gimbal Removal" /><h3>E07 - Gimbal Removal</h3><table><tr id="E07 - Gimbal RemovalHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassE07 - Gimbal Removal"><td class="IconErrorEncoded"><a name="E07 - Gimbal RemovalError" /></td><td class="messageCell"><strong>E07 - Gimbal Removal\E07 - Gimbal Removal.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="E08 - Projections" /><h3>E08 - Projections</h3><table><tr id="E08 - ProjectionsHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassE08 - Projections"><td class="IconErrorEncoded"><a name="E08 - ProjectionsError" /></td><td class="messageCell"><strong>E08 - Projections\E08 - Projections.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="E08s - Projections" /><h3>E08s - Projections</h3><table><tr id="E08s - ProjectionsHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassE08s - Projections"><td class="IconErrorEncoded"><a name="E08s - ProjectionsError" /></td><td class="messageCell"><strong>E08s - Projections\E08s - Projections.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="HW01_STDQueue" /><h3>HW01_STDQueue</h3><table><tr id="HW01_STDQueueHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassHW01_STDQueue"><td class="IconErrorEncoded"><a name="HW01_STDQueueError" /></td><td class="messageCell"><strong>HW01_STDQueue\HW01_STDQueue.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="HW02_3DPrimitives" /><h3>HW02_3DPrimitives</h3><table><tr id="HW02_3DPrimitivesHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassHW02_3DPrimitives"><td class="IconErrorEncoded"><a name="HW02_3DPrimitivesError" /></td><td class="messageCell"><strong>HW02_3DPrimitives\HW02_3DPrimitives.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="HW03_Camera" /><h3>HW03_Camera</h3><table><tr id="HW03_CameraHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassHW03_Camera"><td class="IconErrorEncoded"><a name="HW03_CameraError" /></td><td class="messageCell"><strong>HW03_Camera\HW03_Camera.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="HW04_SAT" /><h3>HW04_SAT</h3><table><tr id="HW04_SATHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassHW04_SAT"><td class="IconErrorEncoded"><a name="HW04_SATError" /></td><td class="messageCell"><strong>HW04_SAT\HW04_SAT.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="HW05_Octree" /><h3>HW05_Octree</h3><table><tr id="HW05_OctreeHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassHW05_Octree"><td class="IconErrorEncoded"><a name="HW05_OctreeError" /></td><td class="messageCell"><strong>HW05_Octree\HW05_Octree.vcxproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942</span></td></tr></table><a name="Class" /><h3>Class</h3><table><tr id="ClassHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Class logged no messages.
+                  </td></tr></table><a name="Exercises" /><h3>Exercises</h3><table><tr id="ExercisesHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Exercises logged no messages.
+                  </td></tr></table><a name="Framework" /><h3>Framework</h3><table><tr id="FrameworkHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Framework logged no messages.
+                  </td></tr></table><a name="Homework" /><h3>Homework</h3><table><tr id="HomeworkHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Homework logged no messages.
+                  </td></tr></table><a name="Solution" /><h3 _locID="ProjectDisplayNameHeader">Solution</h3><table><tr id="SolutionHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="MessageRowHeaderShowSolution"><td class="IconInfoEncoded" /><td class="messageCell"><a _locID="ShowAdditionalMessages" href="#" name="SolutionMessage" onclick="ToggleMessageVisibility('Solution'); return false;">
+          Show 1 additional messages
+        </a></td></tr><tr name="MessageRowClassSolution" style="display: none"><td class="IconInfoEncoded"><a name="SolutionMessage" /></td><td class="messageCell"><strong>DSA2.sln:
+        </strong><span>The solution file does not require migration.</span></td></tr><tr style="display: none" name="MessageRowHeaderHideSolution"><td class="IconInfoEncoded" /><td class="messageCell"><a _locID="HideAdditionalMessages" href="#" name="SolutionMessage" onclick="ToggleMessageVisibility('Solution'); return false;">
+          Hide 1 additional messages
+        </a></td></tr></table></div></div></body></html>
