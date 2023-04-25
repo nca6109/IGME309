@@ -27,6 +27,7 @@ Octant::Octant(uint a_nMaxLevel, uint a_nIdealEntityCount)
 	std::vector<vector3> lMinMax;
 	uint uObjectCount = m_pEntityMngr->GetEntityCount();
 
+	//Find max and min vertices of each entity and push to a list of vector3's
 	for (uint i = 0; i < uObjectCount; i++)
 	{
 		Entity* entity = m_pEntityMngr->GetEntity(i);
@@ -38,10 +39,9 @@ Octant::Octant(uint a_nMaxLevel, uint a_nIdealEntityCount)
 	RigidBody pRigidBody = RigidBody(lMinMax);
 
 
-	//The following will set up the values of the octant, make sure the are right, the rigid body at start
-	//is NOT fine, it has made-up values
+	//Get values from the rigid bodies made from the entity vertices
 	m_fSize = pRigidBody.GetHalfWidth().x * 2.0f;
-	m_v3Center = pRigidBody.GetCenterLocal();
+	m_v3Center = pRigidBody.GetCenterGlobal();
 	m_v3Min = m_v3Center - pRigidBody.GetHalfWidth();
 	m_v3Max = m_v3Center + pRigidBody.GetHalfWidth();
 
@@ -67,7 +67,7 @@ bool Octant::IsColliding(uint a_uRBIndex)
 	vector3 otherMin = rOther->GetMinGlobal();
 	vector3 otherMax = rOther->GetMaxGlobal();
 
-	//AARB Check
+	//AARB Check (Never rotates so AARB is good enough)
 	if (m_v3Max.x < otherMin.x)
 		return false;
 	if (m_v3Min.x > otherMax.x)
@@ -98,11 +98,7 @@ void Octant::Display(uint a_nIndex, vector3 a_v3Color)
 }
 void Octant::Display(vector3 a_v3Color)
 {
-	//this is meant to be a recursive method, in starter code will only display the root
-	//even if other objects are created
-	
-
-	//Go through the children octants if they exists
+	//Go through and display the children octants if they exists
 	if (m_uChildren != 0)
 	{
 		for (uint i = 0; i < 8; i++)
@@ -110,6 +106,7 @@ void Octant::Display(vector3 a_v3Color)
 			m_pChild[i]->Display(a_v3Color);
 		}
 	}
+	//Display parent
 	m_pModelMngr->AddWireCubeToRenderList(glm::translate(IDENTITY_M4, m_v3Center) *
 		glm::scale(vector3(m_fSize)), a_v3Color);
 }
@@ -125,17 +122,17 @@ void Octant::Subdivide(void)
 
 	//Subdivide the space and allocate 8 children
 	//Get difference child centers should be from the parent center
-	float centerDif = m_fSize / 4.0f;
+	float fCenterDif = m_fSize / 4.0f;
 	//Create all 8 child octants for each combination of +/- x,y, and z from current center. New size is half of current octant
-	m_pChild[0]=(new Octant(vector3(m_v3Center.x+centerDif, m_v3Center.y+centerDif, m_v3Center.z+centerDif), m_fSize / 2.0f));
-	m_pChild[1]=(new Octant(vector3(m_v3Center.x + centerDif, m_v3Center.y -centerDif, m_v3Center.z -centerDif), m_fSize / 2.0f));
-	m_pChild[2]=(new Octant(vector3(m_v3Center.x + centerDif, m_v3Center.y + centerDif, m_v3Center.z -centerDif), m_fSize / 2.0f));
-	m_pChild[3]=(new Octant(vector3(m_v3Center.x + centerDif, m_v3Center.y -centerDif, m_v3Center.z + centerDif), m_fSize / 2.0f));
+	m_pChild[0]=(new Octant(vector3(m_v3Center.x+fCenterDif, m_v3Center.y+fCenterDif, m_v3Center.z+fCenterDif), m_fSize / 2.0f));
+	m_pChild[1]=(new Octant(vector3(m_v3Center.x + fCenterDif, m_v3Center.y -fCenterDif, m_v3Center.z -fCenterDif), m_fSize / 2.0f));
+	m_pChild[2]=(new Octant(vector3(m_v3Center.x + fCenterDif, m_v3Center.y + fCenterDif, m_v3Center.z -fCenterDif), m_fSize / 2.0f));
+	m_pChild[3]=(new Octant(vector3(m_v3Center.x + fCenterDif, m_v3Center.y -fCenterDif, m_v3Center.z + fCenterDif), m_fSize / 2.0f));
 
-	m_pChild[4]=(new Octant(vector3(m_v3Center.x -centerDif, m_v3Center.y + centerDif, m_v3Center.z + centerDif), m_fSize / 2.0f));
-	m_pChild[5]=(new Octant(vector3(m_v3Center.x -centerDif, m_v3Center.y -centerDif, m_v3Center.z -centerDif), m_fSize / 2.0f));
-	m_pChild[6]=(new Octant(vector3(m_v3Center.x -centerDif, m_v3Center.y + centerDif, m_v3Center.z -centerDif), m_fSize / 2.0f));
-	m_pChild[7]=(new Octant(vector3(m_v3Center.x -centerDif, m_v3Center.y -centerDif, m_v3Center.z + centerDif), m_fSize / 2.0f));
+	m_pChild[4]=(new Octant(vector3(m_v3Center.x -fCenterDif, m_v3Center.y + fCenterDif, m_v3Center.z + fCenterDif), m_fSize / 2.0f));
+	m_pChild[5]=(new Octant(vector3(m_v3Center.x -fCenterDif, m_v3Center.y -fCenterDif, m_v3Center.z -fCenterDif), m_fSize / 2.0f));
+	m_pChild[6]=(new Octant(vector3(m_v3Center.x -fCenterDif, m_v3Center.y + fCenterDif, m_v3Center.z -fCenterDif), m_fSize / 2.0f));
+	m_pChild[7]=(new Octant(vector3(m_v3Center.x -fCenterDif, m_v3Center.y -fCenterDif, m_v3Center.z + fCenterDif), m_fSize / 2.0f));
 
 	//Update children count
 	m_uChildren = 8;
